@@ -6,10 +6,22 @@
 </head>
 <body>
 	<h1>
-		Hello <span th:text="${person.name}"></span>!!!
+		Hello <span th:text="${title}"></span>!!!
 	</h1>
-	<h3>
-		Your Age is: <span th:text="${person.age}"></span>!!!
-	</h3>
+
+	<table>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Age</th>
+			</tr>
+		</thead>
+		<tbody th:each="person: ${people}">
+			<tr>
+				<th th:text="${person.name}"></th>
+				<th th:text="${person.age}"></th>
+			</tr>
+		</tbody>
+	</table>
 </body>
 </html>
