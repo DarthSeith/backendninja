@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.backendninja.model.Person;
 
@@ -17,7 +18,23 @@ public class Example3Controller {
 	public static final String FORM_VIEW ="form";
 	public static final String FORM_VIEW_2 ="form2";
 	public static final String RESULT_VIEW ="result";
-	//vamos a crear una pagina cualquiera para crear un Formulario
+
+
+	//redireccionar cuando no se le pone /showForm
+	//#1
+	/*
+	@GetMapping("")
+	public String redirect() {
+		return "redirect:/example3/showForm";
+	}
+	*/
+	//redireccionar cuando no se le pone /showForm
+	//#2
+	@GetMapping("")
+	public RedirectView redirect() {
+		return new RedirectView("/example3/showForm") ;
+	}
+	
 	@GetMapping("/showForm")
 	public String showForm(Model model) {
 		model.addAttribute("person", new Person());
