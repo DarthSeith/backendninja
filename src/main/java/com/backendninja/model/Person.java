@@ -2,6 +2,10 @@ package com.backendninja.model;
 
 public class Person {
 
+	public Person() {
+		super();
+	}
+
 	public Person(String name, int age) {
 		super();
 		this.name = name;

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1" />
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="#" th:action="@{/example3/addperson2}"
+		th:object="${person}" method="post">
+		<p>
+			Name: <input type="text" th:field="*{name}">
+		</p>
+		<p>
+			Age: <input type="number" th:field="*{age}">
+		</p>
+		<p>
+			<input type="submit"  value="Submit">
+		<p>
+	</form>
+
+</body>
+</html>
