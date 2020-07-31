@@ -4,6 +4,5 @@ spring:
       location: classpath:/banner/banner.txt
 #  thymeleaf: para realizar la configuracion ver en la pagina de configuracion spring.thymeleaf.... todo lo relacionado
 
-
     
     
