@@ -21,15 +21,13 @@ public class Example3Controller {
 
 
 	//redireccionar cuando no se le pone /showForm
-	//#1
+	// #1
 	/*
-	@GetMapping("")
-	public String redirect() {
-		return "redirect:/example3/showForm";
-	}
-	*/
-	//redireccionar cuando no se le pone /showForm
-	//#2
+	 * @GetMapping("") public String redirect() { return
+	 * "redirect:/example3/showForm"; }
+	 */
+	// redireccionar cuando no se le pone /showForm
+	// #2
 	@GetMapping("")
 	public RedirectView redirect() {
 		return new RedirectView("/example3/showForm") ;
@@ -46,6 +44,13 @@ public class Example3Controller {
 		ModelAndView modelAndView = new ModelAndView(RESULT_VIEW);
 		modelAndView.addObject("person", person);
 		return modelAndView;
+	}
+	
+	@GetMapping("/showError500")
+	public String showError500(Model model) {
+		model.addAttribute("person", new Person());
+		int i = 6/0;
+		return FORM_VIEW;
 	}
 
 }
