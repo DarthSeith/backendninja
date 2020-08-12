@@ -13,13 +13,23 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.backendninja.component.ExampleComponent;
 import com.backendninja.model.Person;
+import com.backendninja.service.ExampleService;
 
+/**
+ * los Controller solo llama a los Servicios
+ * @author gigio
+ *
+ */
 @Controller
 @RequestMapping("/example") // la URL que va a tener este controlado
 public class ExampleController {
 
 	public static final String EXAMPLE_VIEW = "example";
 
+	@Autowired
+	@Qualifier("exampleService")
+	private ExampleService exampleService;
+	
 	@Autowired //esto indica que vamos a utilizar un componente que esta en su memoria, sin necesidad de hacer un new o dar memoria
 	@Qualifier("NameExampleComponent") //Nombre de bean que esta en memoria
 	private ExampleComponent exampleController;
@@ -29,7 +39,7 @@ public class ExampleController {
 	public String exampleGetMapping(Model model) {
 		exampleController.sayHello();
 		model.addAttribute("title", "Welcome exampleGetMapping");
-		model.addAttribute("people", getPeople());
+		model.addAttribute("people", exampleService.getListPeople());
 		return EXAMPLE_VIEW;
 	}
 
@@ -38,18 +48,7 @@ public class ExampleController {
 	public ModelAndView exampleGetMappingModel() {
 		ModelAndView modelAndView=new ModelAndView(EXAMPLE_VIEW);//tenemos que pasarle el objeto de la plantilla para que reconozca
 		modelAndView.addObject("title", "Welcome exampleGetMappingModel");
-		modelAndView.addObject("people", getPeople());
+		modelAndView.addObject("people", exampleService.getListPeople());
 		return modelAndView;
-	}
-	
-	private List<Person> getPeople(){
-		List<Person> lst=new ArrayList<Person>();
-		lst.add(new Person("one",1));
-		lst.add(new Person("two",2));
-		lst.add(new Person("tree",3));
-		lst.add(new Person("forth",4));
-		lst.add(new Person("five",5));
-		lst.add(new Person("six",6));
-		return lst;
 	}
 } 
