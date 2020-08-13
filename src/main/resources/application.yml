@@ -3,6 +3,13 @@ spring:
   banner:
       location: classpath:/banner/banner.txt
 #  thymeleaf: para realizar la configuracion ver en la pagina de configuracion spring.thymeleaf.... todo lo relacionado
-
-    
+  datasource:
+    url: jdbc:mariadb://192.168.56.103:33306/mydb
+    username: root
+    password: contrasea
+    driver-class-name: org.mariadb.jdbc.Driver
+  jpa:
+    hibernate:      ddl-auto: update
+    show-sql: true
+        
     
