@@ -28,16 +28,19 @@ public class CourseController {
 
 	@GetMapping(value = "/listcourses")
 	public ModelAndView listAllCourse() {
-		LOGGER.info("-- METHOD listAllCourse");
+		LOGGER.info("Class: " + CourseController.class + " -- METHOD: listAllCourse");
 		ModelAndView modelAndView = new ModelAndView(COURSES_VIEW);
-		modelAndView.addObject("course", courseService.listAllCourses());
+		modelAndView.addObject("course", new Course());
+		modelAndView.addObject("courses", courseService.listAllCourses());
 		return modelAndView;
 	}
 
 	@PostMapping(value = "/addcourse")
 	public String addCourse(@ModelAttribute("course") Course course) {
-		LOGGER.info("-- METHOD addCourse");
+		LOGGER.info("Class: " + CourseController.class + " -- METHOD: addCourse -- Param: " + course.toString());
 		courseService.addCourse(course);
-		return "redirect:/listCourses";
+		// return "redirect:/listCourses"; //esto esta mal->localhost:8080/listCourses
+		return "redirect:/courses/listcourses"; // esto esta Bien->localhost:8080/courses/listcourses
+
 	}
 }

@@ -7,7 +7,7 @@ import javax.persistence.Table;
 import javax.persistence.Column;
 
 @Entity
-@Table(name = "Course") // indica que tabla corresponde
+@Table(name = "course") // indica que tabla corresponde
 public class Course {
 
 	@Id // primera key
@@ -74,6 +74,12 @@ public class Course {
 
 	public void setHours(int hours) {
 		this.hours = hours;
+	}
+
+	@Override
+	public String toString() {
+		return "Course [idCourse=" + idCourse + ", name=" + name + ", description=" + description + ", price=" + price
+				+ ", hours=" + hours + "]";
 	}
 
 }
